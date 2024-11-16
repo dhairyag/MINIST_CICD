@@ -17,13 +17,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
         pip install -r requirements.txt
         
     - name: Train model
+      env:
+        CUDA_VISIBLE_DEVICES: ""
       run: |
         python train.py
         
     - name: Run tests
+      env:
+        CUDA_VISIBLE_DEVICES: ""
       run: |
         export PYTHONPATH="${PYTHONPATH}:${PWD}"
         python -m pytest tests/
