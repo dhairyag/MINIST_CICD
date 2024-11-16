@@ -94,6 +94,40 @@ The project includes a GitHub Actions workflow that:
 3. Trains the model
 4. Runs the test suite
 
+## Testing Suite
+
+The project includes comprehensive testing to ensure model quality and reliability:
+
+### Basic Model Tests
+- Architecture verification
+- Parameter count check (<25K parameters)
+- Input/output shape validation
+- Base accuracy validation (>95%)
+
+### Advanced Model Validation
+1. Confidence Testing
+   - Validates prediction confidence scores
+   - Ensures average confidence between 0.7 and 1.0
+   - Helps detect uncertainty issues
+
+2. Class Distribution Testing
+   - Verifies balanced predictions across all digits
+   - Ensures minimum 5% representation for each digit
+   - Prevents class bias in predictions
+
+3. Robustness Testing
+   - Tests model stability with input noise
+   - Adds Gaussian noise to test images
+   - Ensures accuracy drop < 15% with noise
+   - Validates basic adversarial robustness
+
+### Running Tests
+```bash
+python -m pytest tests/
+```
+
+All tests must pass in the CI/CD pipeline before deployment.
+
 ## Model Performance
 
 - Accuracy: >95% on MNIST test set
@@ -101,6 +135,9 @@ The project includes a GitHub Actions workflow that:
 - Training: Single epoch with Adam optimizer
 - Learning Rate: 0.001
 - Batch Size: 64
+- Noise Robustness: <15% accuracy drop with Gaussian noise
+- Prediction Confidence: >0.7 average confidence
+- Class Balance: >5% representation for each digit
 
 ## Data Preprocessing
 
