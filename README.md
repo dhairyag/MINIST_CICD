@@ -38,7 +38,8 @@ This project implements a simple CNN architecture to classify handwritten digits
 
 ### Clone the repository
 ```bash
-git clone [repository-url]
+git clone git@github.com:dhairyag/MINIST_CICD.git
+cd MINIST_CICD
 ```
 
 ### Install dependencies
