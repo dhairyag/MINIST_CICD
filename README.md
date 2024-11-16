@@ -1,5 +1,7 @@
 # MNIST Digit Classification with PyTorch
 
+[![Build Status](https://github.com/dhairyag/MNIST_CICD/actions/workflows/ml-pipeline.yml/badge.svg)](https://github.com/dhairyag/MNIST_CICD/actions/workflows/ml-pipeline.yml)
+
 A lightweight Convolutional Neural Network (CNN) implementation for MNIST digit classification using PyTorch.
 
 ## CI/CD Pipeline
