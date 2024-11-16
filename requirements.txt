@@ -1,4 +1,6 @@
 torch
 torchvision
-pytest 
+pytest
 tqdm
+matplotlib
+numpy
