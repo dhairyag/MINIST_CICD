@@ -25,7 +25,8 @@ jobs:
         
     - name: Run tests
       run: |
-        PYTHONPATH=$PYTHONPATH:$(pwd) pytest tests/
+        export PYTHONPATH="${PYTHONPATH}:${PWD}"
+        python -m pytest tests/
         
     - name: Upload trained model
       uses: actions/upload-artifact@v3

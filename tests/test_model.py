@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import torch
 import pytest
 from model.network import SimpleCNN
@@ -9,7 +13,7 @@ def count_parameters(model):
 def test_model_parameters():
     model = SimpleCNN()
     param_count = count_parameters(model)
-    assert param_count < 100000, f"Model has {param_count} parameters, should be less than 100000"
+    assert param_count < 25000, f"Model has {param_count} parameters, should be less than 25000"
 
 def test_input_output_shape():
     model = SimpleCNN()
@@ -21,12 +25,12 @@ def test_model_accuracy():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = SimpleCNN().to(device)
     
-    # Load the latest model
+    # Load the latest model with weights_only=True for security
     import glob
     import os
     model_files = glob.glob('models/model_*.pth')
     latest_model = max(model_files, key=os.path.getctime)
-    model.load_state_dict(torch.load(latest_model))
+    model.load_state_dict(torch.load(latest_model, weights_only=True))
     
     # Test data
     transform = transforms.Compose([
@@ -49,4 +53,4 @@ def test_model_accuracy():
             correct += (predicted == target).sum().item()
     
     accuracy = 100 * correct / total
-    assert accuracy > 80, f"Accuracy is {accuracy}%, should be > 80%" 
+    assert accuracy > 95, f"Accuracy is {accuracy}%, should be > 95%" 
