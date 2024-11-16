@@ -5,18 +5,40 @@ from torchvision import datasets, transforms
 from model.network import SimpleCNN
 from datetime import datetime
 import os
+from utils.augmentation import MNISTAugmentation
 
 def train():
     # Set device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    # Load MNIST dataset
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,))
-    ])
+    # Set up augmentations
+    augmentation = MNISTAugmentation()
     
-    train_dataset = datasets.MNIST('data', train=True, download=True, transform=transform)
+    # Load MNIST dataset with augmentations
+    train_dataset = datasets.MNIST(
+        './data', 
+        train=True, 
+        download=True, 
+        transform=None  # No transform here as we'll create visualizations
+    )
+    
+    # Create augmentation visualizations
+    augmentation.visualize_augmentations(train_dataset)
+    
+    # Now load the actual training dataset with augmentations
+    train_dataset = datasets.MNIST(
+        './data', 
+        train=True, 
+        download=True, 
+        transform=augmentation.train_transform
+    )
+    
+    test_dataset = datasets.MNIST(
+        './data', 
+        train=False, 
+        transform=augmentation.test_transform
+    )
+    
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
     
     # Initialize model

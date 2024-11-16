@@ -2,6 +2,30 @@
 
 A lightweight Convolutional Neural Network (CNN) implementation for MNIST digit classification using PyTorch.
 
+## CI/CD Pipeline
+
+The project includes a robust CI/CD pipeline implemented with GitHub Actions that automates:
+
+1. Environment Setup
+   - Python 3.8 environment configuration
+   - Installation of PyTorch and dependencies
+
+2. Model Training
+   - Automated model training on CPU
+   - Model artifacts saved with timestamps
+
+3. Testing Suite
+   - Automated testing of model architecture
+   - Parameter count verification (<25K)
+   - Model accuracy validation (>95%)
+   - Input/output shape verification
+
+4. Artifact Management
+   - Trained models automatically uploaded as build artifacts
+   - Version control of model weights
+
+The pipeline ensures code quality and model performance with every push to the repository.
+
 ## Project Overview
 
 This project implements a simple CNN architecture to classify handwritten digits from the MNIST dataset. The model achieves >95% accuracy while maintaining a small parameter count (<25,000 parameters).
@@ -82,4 +106,16 @@ The project includes a GitHub Actions workflow that:
 
 - Normalization: Mean=0.1307, Std=0.3081
 - Input: 28x28 grayscale images
-- Data augmentation: None
+- Data augmentation:
+  - Random rotation (±15 degrees)
+  - Random translation (±10% in both directions)
+  - Random scaling (90%-110%)
+  - Random shearing (±10 degrees)
+  - All augmentations are carefully chosen to preserve digit readability
+
+### Augmentation Visualization
+
+The training script automatically generates visualization of augmented samples in the `augmentation_samples/` directory. This helps in:
+- Verifying the augmentation pipeline
+- Ensuring augmentations preserve digit readability
+- Documenting the types of variations introduced during training
