@@ -1,32 +1,10 @@
 # MNIST Digit Classification with PyTorch
 
-[![Build Status](https://github.com/dhairyag/MNIST_CICD/actions/workflows/ml-pipeline.yml/badge.svg)](https://github.com/dhairyag/MNIST_CICD/actions/workflows/ml-pipeline.yml)
+[![ML Pipeline](https://github.com/dhairyag/MINIST_CICD/actions/workflows/ml-pipeline.yml/badge.svg)](https://github.com/dhairyag/MINIST_CICD/actions/workflows/ml-pipeline.yml)
 
-A lightweight Convolutional Neural Network (CNN) implementation for MNIST digit classification using PyTorch.
+A lightweight Convolutional Neural Network (CNN) implementation for MNIST digit classification using PyTorch. 
 
-## CI/CD Pipeline
-
-The project includes a robust CI/CD pipeline implemented with GitHub Actions that automates:
-
-1. Environment Setup
-   - Python 3.8 environment configuration
-   - Installation of PyTorch and dependencies
-
-2. Model Training
-   - Automated model training on CPU
-   - Model artifacts saved with timestamps
-
-3. Testing Suite
-   - Automated testing of model architecture
-   - Parameter count verification (<25K)
-   - Model accuracy validation (>95%)
-   - Input/output shape verification
-
-4. Artifact Management
-   - Trained models automatically uploaded as build artifacts
-   - Version control of model weights
-
-The pipeline ensures code quality and model performance with every push to the repository.
+The project includes a robust CI/CD pipeline implemented with GitHub Actions. All changes must pass the automated pipeline before deployment. For detailed metrics, see the [Actions tab](https://github.com/dhairyag/MINIST_CICD/actions).
 
 ## Project Overview
 
@@ -158,3 +136,8 @@ The training script automatically generates visualization of augmented samples i
 - Verifying the augmentation pipeline
 - Ensuring augmentations preserve digit readability
 - Documenting the types of variations introduced during training
+
+![Sample Augmentations](augmentation_samples/augmentations_20241116_170934.png)
+
+Example augmentations showing original images (leftmost column) and 4 random augmentations per sample. The augmentations demonstrate how the transformations preserve digit readability while introducing natural variations.
+
